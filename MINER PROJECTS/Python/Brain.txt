@@ -1,0 +1,2 @@
+always use ctrl + s or enable auto save feature in Vs Code
+Run Code after that 
