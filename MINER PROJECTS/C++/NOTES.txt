@@ -1,0 +1,3 @@
+C++ Compiler
+
+ -CCC, Clang, Dev C++, Intel C++, Code Block
