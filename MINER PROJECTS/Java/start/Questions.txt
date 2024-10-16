@@ -1,0 +1,124 @@
+1 Write a Java program for a two-player word guessing game,  
+The game should begin by asking the first player to enter their name and a word for the second player to guess. 
+Then, the second player should input their name, receive a welcome message, 
+and start guessing the word letter by letter. The game should allow up to 10 incorrect guesses. 
+Additionally, a 10-minute timer should be implemented, with a message displaying the remaining time every minute. 
+If the player makes 10 incorrect guesses or the 10 minutes expire, they lose the game.” Also after every win or lose, 
+you will switch the sides, for other player to play. 
+
+
+
+
+
+
+
+
+
+
+
+2 Design and implement a two-player Tic-Tac-Toe game in Java where:
+
+	1.	Players are required to register their names before starting the game.
+	2.	The game should allow players to take turns placing their symbols (‘X’ or ‘O’) on the board.
+	3.	After each turn, the game should check for a winner or declare the match as a draw if all positions are filled.
+	4.	The game should display the final result: either the name of the winning player or a message indicating a draw.
+	5.	Optionally, after the game ends, allow the players to start a new match or quit the game.
+
+Additional Specifications:
+
+	1.	Player Registration:
+	•	Prompt both players to input their names.
+	•	Assign symbols (‘X’ for Player 1, ‘O’ for Player 2).
+	2.	Gameplay:
+	•	A 3x3 grid represents the Tic-Tac-Toe board.
+	•	Players alternate turns to place their symbol in an empty grid space.
+	•	The game should validate player input (i.e., check if a position is available).
+	3.	Endgame Conditions:
+	•	The game should declare a winner when a player gets three symbols in a row (horizontally, vertically, or diagonally).
+	•	If all grid spaces are filled and no player has won, the game should declare a draw.
+	4.	Match Result:
+	•	After a match ends, print the winner’s name or declare the match as a draw.
+
+
+
+
+
+
+
+
+
+
+
+3 Task: Create a Simple "Guess the Number" Game
+Description:
+In this game, the computer will randomly select a number between 1 and 100. The player will have to guess the number, and the computer will give hints whether the guessed number is too high, too low, or correct. The game will continue until the player guesses the correct number.
+Steps to Implement:
+Generate a random number between 1 and 100 using the random module.
+Prompt the player to guess the number.
+If the player's guess is too high, print "Too high! Try again."
+If the guess is too low, print "Too low! Try again."
+If the guess is correct, print "Congratulations! You've guessed the number!" and end the game.
+Optionally, count the number of attempts and display it when the player wins.
+
+
+
+
+
+
+
+4. Bank Account Management System
+Objective: Build a program that simulates a simple bank account management system for multiple users.
+Requirements:
+Allow users to register, log in, and manage their accounts.
+Users should be able to check balance, deposit money, and withdraw money.
+Implement user authentication (username and password).
+Use arrays or lists to store multiple users' data.
+
+
+
+
+
+
+
+
+
+
+### 1. **Rock, Paper, Scissors Game**
+- **Objective**: Develop a two-player Rock, Paper, Scissors game where players input their choices and the winner is determined based on standard rules.
+- **Requirements**:
+  - Prompt both players to enter their names.
+  - Players then input their choices (rock, paper, or scissors).
+  - Determine the winner based on the choices:
+    - Rock beats scissors, scissors beats paper, and paper beats rock.
+  - Display the winner and ask if they want to play another round.
+  - Keep track of the score between rounds.
+
+### 2. **Battleship Game**
+- **Objective**: Implement a simplified version of the Battleship game where the player tries to sink the computer's ships on a 5x5 grid.
+- **Requirements**:
+  - Generate a 5x5 grid where the computer randomly places 3 ships.
+  - The player inputs coordinates to "fire" at a ship.
+  - If a ship is hit, display "Hit!" and mark the ship on the grid.
+  - The game continues until all ships are sunk, and display the number of attempts.
+
+### 4. **Sudoku Validator**
+- **Objective**: Write a program that checks if a given 9x9 Sudoku board configuration is valid.
+- **Requirements**:
+  - The board should be represented as a 2D array.
+  - Validate that each row, column, and 3x3 subgrid contains the numbers 1-9 exactly once.
+  - Output whether the board configuration is valid or not.
+
+### 6. **Library Management System**
+- **Objective**: Create a basic library management system where users can borrow and return books.
+- **Requirements**:
+  - Define a list of books with their availability status.
+  - Users can "borrow" books, marking them as unavailable.
+  - Users can also "return" books, making them available again.
+  - Track the borrowing history of users.
+
+### 7. **Palindrome Checker**
+- **Objective**: Write a program that checks if a given word or phrase is a palindrome (reads the same forward and backward).
+- **Requirements**:
+  - Ignore spaces, punctuation, and case when determining if the input is a palindrome.
+  - Output whether the input is a palindrome or not.
+
