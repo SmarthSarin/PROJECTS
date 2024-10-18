@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<header>
+    <nav>
+        <ul><a href="">HOME</a></ul>
+        <ul><a href="">MENU</a></ul>
+        <ul><a href="">GALLERY</a></ul>
+        <ul><a href="">ABOUT</a></ul>
+        <ul><a href="mailto:smarthsarin@gmail.com">CONTACT VIA MAIL</a></ul>
+        <ul><a href="tel:+91 7618161999">CONTACT VIA phone</a></ul>
+    </nav>
+    <style>
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #22ef0f;
+            padding: 10px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            flex-wrap: wrap; /* Allows items to wrap to the next line */
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav a {
+            text-decoration: none;
+            color: #8000ff;
+            padding: 10px 15px;
+            display: block;
+        }
+        nav a:hover {
+            background-color: #ddd;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column; /* Stacks items vertically */
+                align-items: center; /* Centers items horizontally */
+            }
+            nav a {
+                padding: 10px 0; /* Adjusts padding for smaller screens */
+            }
+        }
+    </style>
+</header>
+
+<body>
+    <!-- block element  -->
+    <div style="background-color: rgb(207, 190, 63);">this is first div </div> 
+    <div style="background-color: rgb(52, 164, 119);display: inline;">this is second div </div> 
+    <p style="background-color: rgb(255, 0, 170);">this is first para</p>
+    <p style="background-color: rgb(74, 156, 156);">this is second para</p>
+    <p style="background-color: rgb(156, 74, 144); display: inline;">this is third para</p>
+    <pre style="background-color: lightgray;">
+        This is a text block
+            with preserved spaces
+        and line breaks.
+    </pre>
+    <pre style="background-color: rgb(163, 88, 88);">
+        This is a text block
+            with preserved spaces
+        and line breaks.
+    </pre>
+    <!-- block element  -->
+
+
+
+
+    <!-- inline element -->
+    <span style="background-color: brown;display: block;">this is first span</span> 
+    <span style="background-color: rgb(71, 105, 183);">this is second span</span> 
+    <div style="background-color: rgb(52, 164, 119);display: inline;">this is second div </div> 
+    <p style="background-color: rgb(156, 74, 144); display: inline;">this is third para</p>
+
+    <!-- enlign element -->
+    
+    
+</body>
+</html>
