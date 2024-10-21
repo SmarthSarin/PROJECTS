@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Event registration</h2>
+    <form action="">
+        <label for="name">Enter Name:</label>
+        <input type="text" id="name" label="name">
+        <br><br>
+        <label for="Email">Enter Email:</label>
+        <input type="text" id="Email" label="Email">
+        <br><br>
+        <label for="Phone">Enter Phone:</label>
+        <input type="tel" id="Phone" name="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+        <small>Format: 123-456-7890</small>
+        <br><br>
+        <label for="occupation">occupation:</label>
+        <select name="occupation" id="occupation">
+            <option value="student">student</option>
+            <option value="teacher">teacher</option>
+        </select>
+        <fieldset>
+            <legend>
+                topic of intrest        
+            </legend>
+            <label for="checkbox1">html</label>
+            <input type="checkbox" name="checkbox" id="checkbox1">
+            <label for="checkbox2">java</label>
+            <input type="checkbox" name="checkbox" id="checkbox2">
+            <label for="checkbox">hello</label>
+            <input type="checkbox" name="checkbox" id="checkbox">
+            <label for="checkbox23">hello</label>
+            <input type="checkbox" name="checkbox" id="checkbox23">
+        </fieldset>
+        <label for="reg"></label>
+        <input type="button" value="register">
+
+    </form>
+</body>
+</html>
