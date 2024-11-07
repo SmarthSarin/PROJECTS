@@ -27,8 +27,9 @@
 //     }
 // }
 public class rocksam {
-    public static void main(Sting[]agrs){
-        
+    public static void main(String[]agrs){
+      System.out.println("father name or anyhting here ");  
+      System.out.println("your name or anyhting here "); 
     }
 }
 

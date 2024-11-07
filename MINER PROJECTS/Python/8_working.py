@@ -1,2 +1,20 @@
-a=int(input('osjegn'))
-print(type(a),a)
+a=int(input("enter a number:"))
+a%=2
+if(a==0):
+    print ("Even")
+else:
+    print ("ODD")
+
+
+
+
+
+
+
+
+
+
+# marketunh 
+# hr 
+# operation 
+# finanace
