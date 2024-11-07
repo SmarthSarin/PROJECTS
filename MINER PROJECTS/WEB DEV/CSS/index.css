@@ -1,4 +1,4 @@
-article {
+/* article {
     min-height: 100%;
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -11,4 +11,18 @@ article {
     background-color: #45a1ff;
     color: #fff;
   }
-  
+   */
+   /* h1{
+    color: rgb(177, 62, 127);
+   }
+   body{
+    background-color: rgb(234, 87, 34)
+   } */
+
+   h1{
+    color: #00ffbf;
+   }
+   *{
+    color: rgb(38, 0, 255);
+   }
+   
