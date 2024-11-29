@@ -1,2 +1,766 @@
+
+
 JAVA Compiler — IntelliJ IDEA, Eclipse IDE, NetBeans, BlueJ, JDeveloper
 JAVA Interpreter - HotSpot, OpenJ9, JRocklt
+
+
+
+
+Object-Oriented Programming (OOP) is a programming paradigm that organizes software design around data, 
+or objects, rather than functions and logic. In OOP, objects represent real-world entities 
+and have both attributes (data) and behaviors (methods or functions). 
+OOP is based on four main principles: Abstraction, Encapsulation, Inheritance, and Polymorphism.
+
+
+Abstraction
+
+Abstraction in Object-Oriented Programming (OOP) is the concept of hiding complex implementation details 
+and showing only the essential features of an object. 
+In simpler terms, abstraction helps to reduce complexity by focusing on what an object does rather than how it does it. 
+This is useful in situations where the internal workings of a system are not necessary for the user to understand 
+but the actions or behaviors are.
+
+
+
+### Key Points of Abstraction:
+
+1. **Simplifies complex systems**: Abstraction reduces complexity by removing unnecessary details and exposing only the relevant information.
+2. **Encourages modularization**: It allows developers to break down systems into smaller, manageable parts.
+3. **Increases code reusability**: Abstract classes and interfaces can define behaviors that can be implemented differently by subclasses.
+
+
+
+
+### Real-world Example:
+
+Consider a `CoffeeMachine` at a café. As a user, you don't need to know how the machine heats the water or mixes coffee grounds to make a cup of coffee. 
+You only need to press a button to get your coffee. This button-pressing interface is an abstraction of the underlying, complex coffee-making process.
+
+
+
+
+### Abstraction in Java:
+
+In Java, abstraction can be achieved in two main ways:
+1. **Abstract Classes**
+2. **Interfaces**
+
+
+
+
+#### 1. Abstract Classes:
+An **abstract class** can have both abstract (without implementation) and concrete (with implementation) methods. 
+It cannot be instantiated directly, meaning you cannot create objects of an abstract class. 
+Instead, subclasses must inherit from it and implement the abstract methods.
+
+
+
+
+**Example:**
+
+```java
+// Abstract class
+abstract class Animal {
+    // Abstract method (does not have a body)
+    public abstract void sound();
+    
+    // Regular method
+    public void sleep() {
+        System.out.println("The animal is sleeping");
+    }
+}
+
+// Dog class extends Animal and provides implementation for the abstract method
+class Dog extends Animal {
+    public void sound() {
+        System.out.println("The dog barks");
+    }
+}
+
+// Main class to test abstraction
+public class Main {
+    public static void main(String[] args) {
+        Animal myDog = new Dog(); // Create a Dog object
+        myDog.sound(); // Outputs: The dog barks
+        myDog.sleep(); // Outputs: The animal is sleeping
+    }
+}
+```
+
+
+
+
+In this example:
+- `Animal` is an abstract class with an abstract method `sound()`. 
+- `Dog` is a concrete subclass that provides the specific implementation of `sound()`.
+- The `sleep()` method in `Animal` is a regular method and does not need to be redefined in the subclass.
+
+
+
+
+#### 2. Interfaces:
+An **interface** is a completely abstract class that defines a set of methods that a class must implement. All methods in an interface are by default abstract (before Java 8) and public. Interfaces provide a way to achieve multiple inheritance, as a class can implement multiple interfaces.
+
+
+
+
+**Example:**
+
+```java
+// Interface
+interface Animal {
+    void sound(); // Abstract method
+    void eat(); // Abstract method
+}
+
+// Dog class implements the Animal interface
+class Dog implements Animal {
+    public void sound() {
+        System.out.println("The dog barks");
+    }
+
+    public void eat() {
+        System.out.println("The dog is eating");
+    }
+}
+
+// Main class to test interface abstraction
+public class Main {
+    public static void main(String[] args) {
+        Animal myDog = new Dog(); // Create a Dog object
+        myDog.sound(); // Outputs: The dog barks
+        myDog.eat();   // Outputs: The dog is eating
+    }
+}
+```
+
+
+
+
+In this example:
+- The `Animal` interface declares two methods, `sound()` and `eat()`.
+- The `Dog` class implements the `Animal` interface and provides specific implementations for both methods.
+
+
+
+### When to Use Abstraction
+- When you have multiple classes with similar behaviors but different implementations, such as various animals with unique sounds.
+- When you want to provide a common interface for different parts of an application.
+
+By using abstraction, Java allows you to define functionalities in a flexible, reusable way, making it easy to expand and modify your code without affecting existing systems.
+
+
+
+
+
+
+Encapsulation
+
+
+Encapsulation in Object-Oriented Programming (OOP) is a concept that binds together 
+the **data** (attributes) and **methods** (functions) that manipulate that data, 
+within a single unit, known as a **class**. 
+The main objective of encapsulation is to hide the internal state of an object 
+and protect it from unauthorized or unintended access, a principle known as **data hiding**.
+
+Encapsulation allows a class to expose only what is necessary to the outside world, 
+typically through **public methods** while keeping internal data **private**. 
+This makes classes easier to manage, more secure, and reduces dependencies within the code.
+
+### Key Benefits of Encapsulation:
+1. **Data Protection**: By keeping data private, you ensure that it is accessed 
+and modified only in controlled ways.
+2. **Modularity**: Encapsulated classes are self-contained, making it easier to understand, 
+debug, and maintain code.
+3. **Controlled Access**: Access to data can be controlled through methods, 
+which helps in adding validation or custom logic.
+4. **Flexibility and Maintenance**: Changes in the internal implementation don’t affect other parts of the code,
+as long as the public methods remain the same.
+
+### Example of Encapsulation in Java
+
+Consider a `BankAccount` class where the `balance` is a sensitive piece of information 
+that should not be accessed or modified directly by external classes. 
+Instead, we provide controlled access through public methods like `deposit()` and `withdraw()`.
+
+#### Example Code:
+
+```java
+// BankAccount.java
+public class BankAccount {
+    // Private attribute - accessible only within the class
+    private double balance;
+
+    // Constructor to initialize the account with an initial balance
+    public BankAccount(double initialBalance) {
+        if (initialBalance > 0) {
+            this.balance = initialBalance;
+        } else {
+            this.balance = 0; // Ensure the initial balance is not negative
+        }
+    }
+
+    // Public method to deposit money
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: " + amount);
+        } else {
+            System.out.println("Deposit amount must be positive");
+        }
+    }
+
+    // Public method to withdraw money
+    public boolean withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrew: " + amount);
+            return true;
+        } else {
+            System.out.println("Insufficient balance or invalid amount");
+            return false;
+        }
+    }
+
+    // Public method to check the current balance
+    public double getBalance() {
+        return balance;
+    }
+}
+
+// Main.java
+public class Main {
+    public static void main(String[] args) {
+        // Create a new BankAccount with an initial balance
+        BankAccount account = new BankAccount(500);
+
+        // Deposit money into the account
+        account.deposit(200); // Output: Deposited: 200
+
+        // Withdraw money from the account
+        account.withdraw(100); // Output: Withdrew: 100
+
+        // Check the current balance
+        System.out.println("Current balance: " + account.getBalance()); // Output: Current balance: 600
+
+        // Attempting to withdraw an amount greater than the balance
+        account.withdraw(1000); // Output: Insufficient balance or invalid amount
+    }
+}
+```
+
+#### Explanation of the Code:
+1. **Private Attribute (`balance`)**: The `balance` field is declared as `private`, so it can’t be accessed directly from outside the `BankAccount` class. This helps in preventing any unauthorized or accidental modification of the balance.
+
+2. **Constructor**: The constructor allows initializing the `balance` when a new `BankAccount` object is created. If a negative initial balance is provided, it defaults to zero, ensuring valid data.
+
+3. **Public Methods for Access**:
+   - **`deposit(double amount)`**: Allows money to be added to the account. It validates that the deposit amount is positive before adding it to the balance.
+   - **`withdraw(double amount)`**: Allows money to be withdrawn from the account. It checks if the withdrawal amount is positive and within the available balance before deducting it.
+   - **`getBalance()`**: Returns the current balance. This is a read-only method that safely exposes the balance without allowing modifications.
+
+4. **Controlled Access**: The methods `deposit()` and `withdraw()` serve as controlled access points for modifying the balance. If any invalid operation (like depositing a negative amount or withdrawing more than the balance) is attempted, it is rejected with an appropriate message.
+
+### Advantages of Using Encapsulation in the Example
+1. **Security**: The balance is private, so unauthorized classes cannot modify it directly.
+2. **Validation**: Methods like `deposit()` and `withdraw()` provide validation logic, ensuring that only valid operations are allowed on the balance.
+3. **Readability and Maintenance**: The code is modular and self-contained. If the internal implementation of `BankAccount` changes, such as adding interest or fees, it won’t affect other classes using `BankAccount` as long as the public methods remain the same.
+4. **Reusability**: This `BankAccount` class can be reused in multiple applications, providing a robust, reusable account management functionality.
+
+### Encapsulation with `Setter` and `Getter` Methods
+In Java, encapsulation is often implemented using private fields and public **getter** and **setter** methods. **Getter** methods retrieve the value of private fields, while **setter** methods modify them with validation if necessary.
+
+#### Example with Setters and Getters:
+
+```java
+public class Person {
+    private String name;
+    private int age;
+
+    // Getter for name
+    public String getName() {
+        return name;
+    }
+
+    // Setter for name with validation
+    public void setName(String name) {
+        if (name != null && !name.isEmpty()) {
+            this.name = name;
+        } else {
+            System.out.println("Invalid name");
+        }
+    }
+
+    // Getter for age
+    public int getAge() {
+        return age;
+    }
+
+    // Setter for age with validation
+    public void setAge(int age) {
+        if (age > 0 && age <= 120) {
+            this.age = age;
+        } else {
+            System.out.println("Invalid age");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person person = new Person();
+        person.setName("Alice");
+        person.setAge(30);
+
+        System.out.println("Name: " + person.getName()); // Output: Name: Alice
+        System.out.println("Age: " + person.getAge());   // Output: Age: 30
+
+        person.setAge(-5); // Output: Invalid age
+    }
+}
+```
+
+In this example:
+- The `Person` class has private fields, `name` and `age`.
+- **Getters and Setters**: The `getName()` and `getAge()` methods are getter methods that return the values of `name` and `age`, respectively. The `setName()` and `setAge()` methods are setter methods that modify `name` and `age` values with added validation.
+- **Validation Logic**: `setAge()` ensures the age is positive and realistic (between 1 and 120), and `setName()` checks that the name is not empty.
+
+### Summary
+Encapsulation in OOP helps to:
+1. Protect the internal state of an object.
+2. Provide controlled access to an object’s data through methods.
+3. Make the class more flexible and maintainable by separating the implementation from the interface.
+
+By encapsulating attributes and exposing controlled access points, you can ensure that your classes are used correctly and that sensitive data is safeguarded against invalid modifications.
+
+
+
+Inheritance
+
+
+
+Inheritance is a fundamental concept in Object-Oriented Programming (OOP) that allows one class to **inherit** properties and behaviors from another class. Inheritance enables code reuse, modularity, and the creation of a class hierarchy, where classes share attributes and methods in a structured way.
+
+### Key Points of Inheritance:
+1. **Parent (or Superclass)**: The class that provides its properties and methods to other classes.
+2. **Child (or Subclass)**: The class that inherits from another class.
+3. **`extends` Keyword**: Used in Java to indicate inheritance.
+
+### Benefits of Inheritance:
+- **Code Reusability**: Common code is shared across classes, reducing duplication.
+- **Hierarchical Classification**: Classes can be organized into hierarchies, making code organization logical.
+- **Easy Maintenance**: Changes in the superclass automatically propagate to subclasses, making maintenance easier.
+- **Extensibility**: New features or behaviors can be added in subclasses without altering the superclass.
+
+### Types of Inheritance
+In Java, inheritance is limited to **single inheritance** (a class can inherit from only one superclass) due to the **diamond problem** (ambiguity with multiple inheritance). However, a class can implement multiple interfaces, which is a way to achieve a similar effect.
+
+### Basic Example of Inheritance
+Consider a simple example of a parent `Vehicle` class and two child classes, `Car` and `Bike`, that inherit from `Vehicle`.
+
+```java
+// Parent class
+class Vehicle {
+    protected int speed;
+
+    // Method to display vehicle speed
+    public void displaySpeed() {
+        System.out.println("Speed: " + speed + " km/h");
+    }
+
+    // Method to accelerate
+    public void accelerate(int increase) {
+        speed += increase;
+        System.out.println("Accelerated to: " + speed + " km/h");
+    }
+}
+
+// Child class inheriting Vehicle
+class Car extends Vehicle {
+    private int fuelLevel;
+
+    // Constructor
+    public Car(int fuel) {
+        fuelLevel = fuel;
+    }
+
+    // Method to display fuel level
+    public void displayFuelLevel() {
+        System.out.println("Fuel Level: " + fuelLevel + " liters");
+    }
+}
+
+// Another child class inheriting Vehicle
+class Bike extends Vehicle {
+    private boolean hasHelmet;
+
+    // Constructor
+    public Bike(boolean helmet) {
+        hasHelmet = helmet;
+    }
+
+    // Method to display helmet status
+    public void displayHelmetStatus() {
+        System.out.println("Helmet Worn: " + hasHelmet);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car myCar = new Car(50);  // Create a Car object
+        myCar.accelerate(60);     // Access method from Vehicle class
+        myCar.displayFuelLevel(); // Access method from Car class
+
+        Bike myBike = new Bike(true); // Create a Bike object
+        myBike.accelerate(30);        // Access method from Vehicle class
+        myBike.displayHelmetStatus(); // Access method from Bike class
+    }
+}
+```
+
+### Explanation of Code:
+1. **`Vehicle` Class**:
+   - `Vehicle` is a superclass that has attributes like `speed` and methods `displaySpeed()` and `accelerate()`.
+   - These methods can be used by any subclass of `Vehicle`.
+
+2. **`Car` Class**:
+   - `Car` is a subclass that **inherits** properties and methods of `Vehicle`.
+   - It also has its own unique attribute, `fuelLevel`, and a method `displayFuelLevel()` to display it.
+   - `Car` can use the `accelerate()` method from `Vehicle`.
+
+3. **`Bike` Class**:
+   - `Bike` is another subclass of `Vehicle` with its own specific attribute `hasHelmet` and method `displayHelmetStatus()`.
+   - `Bike` also inherits `accelerate()` from `Vehicle`.
+
+4. **Usage**:
+   - Both `myCar` and `myBike` objects use the `accelerate()` method from `Vehicle`, demonstrating inheritance.
+   - Each subclass (`Car` and `Bike`) has its own additional methods (`displayFuelLevel()` and `displayHelmetStatus()`), making each class unique.
+
+### Method Overriding in Inheritance
+Method overriding allows a subclass to **provide a specific implementation** of a method already defined in its superclass. This is a form of polymorphism in inheritance, where the subclass method has the same name and parameters as the method in the superclass.
+
+#### Example of Method Overriding
+
+```java
+class Vehicle {
+    public void fuelType() {
+        System.out.println("Vehicle fuel type is unspecified");
+    }
+}
+
+class Car extends Vehicle {
+    // Overriding the fuelType method
+    @Override
+    public void fuelType() {
+        System.out.println("Car uses petrol or diesel");
+    }
+}
+
+class ElectricCar extends Vehicle {
+    // Overriding the fuelType method
+    @Override
+    public void fuelType() {
+        System.out.println("Electric car uses electricity");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Vehicle myVehicle = new Vehicle();
+        Vehicle myCar = new Car();
+        Vehicle myElectricCar = new ElectricCar();
+
+        myVehicle.fuelType(); // Output: Vehicle fuel type is unspecified
+        myCar.fuelType();      // Output: Car uses petrol or diesel
+        myElectricCar.fuelType(); // Output: Electric car uses electricity
+    }
+}
+```
+
+#### Explanation:
+- **`fuelType()` Method** in `Vehicle` class: Provides a generic fuel type message.
+- **Overridden `fuelType()` in `Car`**: Specifies that cars use petrol or diesel.
+- **Overridden `fuelType()` in `ElectricCar`**: Specifies that electric cars use electricity.
+
+Here, the `fuelType()` method behaves differently depending on the object’s actual type (`Vehicle`, `Car`, or `ElectricCar`), demonstrating polymorphism.
+
+### Access Modifiers in Inheritance
+In Java, access modifiers (`public`, `protected`, `private`) affect the visibility of superclass members to subclasses:
+- **`public`** members are accessible everywhere, including subclasses.
+- **`protected`** members are accessible within the same package and in subclasses.
+- **`private`** members are not accessible in subclasses.
+
+For example:
+
+```java
+class Vehicle {
+    protected int speed;  // Protected member
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+}
+
+class Car extends Vehicle {
+    public void showSpeed() {
+        System.out.println("Speed: " + speed); // Can access protected member directly
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car myCar = new Car();
+        myCar.setSpeed(80);
+        myCar.showSpeed(); // Output: Speed: 80
+    }
+}
+```
+
+In this case:
+- The `speed` attribute is `protected` in `Vehicle`, so it is directly accessible in `Car`.
+- If `speed` were `private`, we would need a getter method in `Vehicle` to access it in `Car`.
+
+### Types of Inheritance in Java
+1. **Single Inheritance**: A class inherits from only one superclass.
+    ```java
+    class A { }
+    class B extends A { } // Single inheritance
+    ```
+
+2. **Multilevel Inheritance**: A class inherits from a superclass, and another class inherits from that subclass.
+    ```java
+    class A { }
+    class B extends A { }
+    class C extends B { } // Multilevel inheritance
+    ```
+
+3. **Hierarchical Inheritance**: Multiple classes inherit from the same superclass.
+    ```java
+    class A { }
+    class B extends A { }
+    class C extends A { } // Hierarchical inheritance
+    ```
+
+Java does not support **multiple inheritance** (a class cannot have more than one direct superclass) to avoid complexity and ambiguity (known as the "diamond problem").
+
+### Summary
+Inheritance in Java allows for:
+1. **Code Reusability**: A superclass can define attributes and behaviors that are reused in subclasses.
+2. **Polymorphism**: Through method overriding, subclasses can provide specialized behavior.
+3. **Hierarchical Relationships**: Superclass-subclass relationships establish a hierarchy of classes, which makes code organization more logical and maintainable.
+
+By using inheritance wisely, you can create modular, extensible code that is both easier to maintain and scalable.
+
+
+
+
+
+
+Polymorphism 
+
+
+
+
+
+
+Polymorphism is an important concept in Object-Oriented Programming (OOP) that allows objects of different classes to be treated as objects of a common superclass. This enables a single interface to represent different underlying forms (data types), essentially allowing the same method or operator to behave differently based on the object it is acting upon.
+
+Polymorphism can be classified into two main types:
+1. **Compile-Time (Static) Polymorphism**: Achieved through method overloading.
+2. **Run-Time (Dynamic) Polymorphism**: Achieved through method overriding.
+
+### 1. Compile-Time Polymorphism (Method Overloading)
+Method overloading allows a class to have multiple methods with the **same name** but **different parameters** (either by number, type, or order of parameters). The compiler determines which method to call based on the method signature.
+
+**Example of Method Overloading**:
+
+```java
+class MathOperations {
+    // Method to add two integers
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    // Overloaded method to add three integers
+    public int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    // Overloaded method to add two doubles
+    public double add(double a, double b) {
+        return a + b;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MathOperations math = new MathOperations();
+
+        // Calls the first add method
+        System.out.println("Sum of two integers: " + math.add(5, 10)); // Output: 15
+
+        // Calls the overloaded add method with three parameters
+        System.out.println("Sum of three integers: " + math.add(5, 10, 15)); // Output: 30
+
+        // Calls the overloaded add method with double parameters
+        System.out.println("Sum of two doubles: " + math.add(5.5, 10.5)); // Output: 16.0
+    }
+}
+```
+
+**Explanation**:
+- The `MathOperations` class has three `add` methods, each with a different parameter list.
+- The appropriate method is selected based on the arguments passed during the call, which is resolved at compile-time.
+
+### 2. Run-Time Polymorphism (Method Overriding)
+Method overriding allows a subclass to provide a specific implementation for a method that is already defined in its superclass. Run-time polymorphism is achieved through method overriding, where the method to be called is determined at run time based on the object type.
+
+**Key Points for Method Overriding**:
+- The method in the subclass must have the **same name**, **return type**, and **parameters** as the method in the superclass.
+- Run-time polymorphism requires inheritance.
+
+**Example of Method Overriding**:
+
+```java
+// Superclass
+class Animal {
+    // Method to be overridden in subclass
+    public void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+// Subclass Dog overrides the sound method
+class Dog extends Animal {
+    @Override
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+// Subclass Cat overrides the sound method
+class Cat extends Animal {
+    @Override
+    public void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal myAnimal = new Animal(); // Animal reference and object
+        Animal myDog = new Dog();       // Animal reference but Dog object
+        Animal myCat = new Cat();       // Animal reference but Cat object
+
+        // Calls the respective sound method based on the actual object type
+        myAnimal.sound(); // Output: Animal makes a sound
+        myDog.sound();    // Output: Dog barks
+        myCat.sound();    // Output: Cat meows
+    }
+}
+```
+
+**Explanation**:
+- The `sound()` method is defined in the superclass `Animal` and overridden in the subclasses `Dog` and `Cat`.
+- Even though the variables `myDog` and `myCat` are of type `Animal`, the overridden `sound()` methods in `Dog` and `Cat` are called based on the actual object type, demonstrating polymorphism.
+
+### Real-World Example of Polymorphism
+Imagine an e-commerce application with a `Payment` superclass and specific payment methods like `CreditCardPayment` and `PayPalPayment`. Each subclass can implement its own version of `processPayment()`.
+
+```java
+// Superclass
+abstract class Payment {
+    // Abstract method to process payment
+    public abstract void processPayment(double amount);
+}
+
+// CreditCardPayment class implementing Payment
+class CreditCardPayment extends Payment {
+    @Override
+    public void processPayment(double amount) {
+        System.out.println("Processing credit card payment of $" + amount);
+    }
+}
+
+// PayPalPayment class implementing Payment
+class PayPalPayment extends Payment {
+    @Override
+    public void processPayment(double amount) {
+        System.out.println("Processing PayPal payment of $" + amount);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Payment payment;
+
+        payment = new CreditCardPayment();
+        payment.processPayment(150.0); // Output: Processing credit card payment of $150.0
+
+        payment = new PayPalPayment();
+        payment.processPayment(150.0); // Output: Processing PayPal payment of $150.0
+    }
+}
+```
+
+**Explanation**:
+- The `Payment` superclass defines an abstract `processPayment()` method.
+- Each subclass provides a specific implementation of `processPayment()`.
+- The `processPayment()` method is called dynamically based on the type of payment object at run-time, demonstrating polymorphism.
+
+### Advantages of Polymorphism:
+1. **Code Reusability**: Polymorphism enables the use of one interface for multiple implementations, promoting code reuse.
+2. **Flexibility and Scalability**: New classes can be added with minimal changes to existing code.
+3. **Simplifies Code**: With polymorphism, code becomes simpler and more manageable as we can use common interfaces and methods.
+
+### Polymorphism with Interfaces
+Polymorphism in Java can also be achieved through **interfaces**, where multiple classes implement the same interface but provide different implementations for its methods.
+
+**Example with Interfaces**:
+
+```java
+// Payment interface with a method declaration
+interface Payment {
+    void processPayment(double amount);
+}
+
+// CreditCardPayment class implementing Payment interface
+class CreditCardPayment implements Payment {
+    @Override
+    public void processPayment(double amount) {
+        System.out.println("Processing credit card payment of $" + amount);
+    }
+}
+
+// PayPalPayment class implementing Payment interface
+class PayPalPayment implements Payment {
+    @Override
+    public void processPayment(double amount) {
+        System.out.println("Processing PayPal payment of $" + amount);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Payment payment;
+
+        payment = new CreditCardPayment();
+        payment.processPayment(200.0); // Output: Processing credit card payment of $200.0
+
+        payment = new PayPalPayment();
+        payment.processPayment(200.0); // Output: Processing PayPal payment of $200.0
+    }
+}
+```
+
+In this example:
+- `Payment` is an interface with a `processPayment()` method.
+- `CreditCardPayment` and `PayPalPayment` implement the `Payment` interface, each providing its own version of `processPayment()`.
+- The code can switch between different payment types by changing the implementation assigned to `payment`.
+
+### Summary
+Polymorphism allows for dynamic and flexible code by enabling multiple implementations of the same interface. It provides two major forms:
+1. **Compile-Time Polymorphism** (Method Overloading): Multiple methods with the same name but different parameters.
+2. **Run-Time Polymorphism** (Method Overriding): Subclass-specific implementations of a method in the superclass, enabling different behaviors based on object types.
+
+Using polymorphism, Java provides a powerful tool to create flexible, reusable, and maintainable code, which can adapt and extend as the system grows.
